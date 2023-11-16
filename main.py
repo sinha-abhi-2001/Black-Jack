@@ -1,6 +1,7 @@
 #BLACK JACK 
 import random
 import os
+from art import logo
 def deal_card():
     '''Deals a random card from the card list'''
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
@@ -14,7 +15,10 @@ def calculate_score(cards):
         cards.append(1)
     return sum(cards)
 def compare_score(user_score, computer_score):
-    if user_score ==0 or computer_score > 21:
+    """This function compares the score between user and computer and prints the winner"""
+    if user_score == computer_score:
+        print("It's a draw")
+    elif user_score ==0 or computer_score > 21:
         print("You win.")
     elif computer_score == 0 or user_score > 21:
         print("You loose.")
@@ -42,7 +46,7 @@ def black_jack():
             user_cards.append(deal_card())
         else:
             is_game_over = True
-    while computer_score < 17:
+    while computer_score!=0 and computer_score < 17:
         computer_cards.append(deal_card())
         computer_score = calculate_score(computer_cards)
         if computer_score > 21:
@@ -53,7 +57,7 @@ def black_jack():
     compare_score(user_score, computer_score)
     print(f"You'r score is {user_score} and dealer's score is {computer_score} and cards are {computer_cards}")
 
-
+print(logo)
 is_continue = True
 should_continue = input("Do you want to play BlackJack? type y to play and n to exit\n ")
 if should_continue == "y":
@@ -69,3 +73,4 @@ while is_continue:
         is_continue = False
     else:
         os.system('cls')
+        print(logo)
